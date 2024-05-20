@@ -5,10 +5,7 @@ import { getEmployees, createEmployees, updateEmployees, deleteEmployees } from 
 const router = Router();
 
 
-router.get('/employees',
-    getEmployees
-    //(req, res) => res.send("Esto no me da")
-);
+router.get('/employees', getEmployees);
 
 router.post('/employees', createEmployees);
 
