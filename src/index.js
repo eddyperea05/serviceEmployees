@@ -10,10 +10,10 @@ const app = express()
 app.use(express.json());
 
 //Rourtes
-app.use(indexRoutes);
-app.use(employeesRoutes);
+app.use('/api', indexRoutes);
+app.use('/api', employeesRoutes);
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-  })
+  console.log(`app listening on port ${port}`)
+})
 
