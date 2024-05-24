@@ -12,7 +12,7 @@ router.get('/employees/:id', getEmployeeId);
 
 router.post('/employees', createEmployees);
 
-router.put('/employees/:id', updateEmployees);
+router.patch('/employees/:id', updateEmployees);
 
 router.delete('/employees/:id', deleteEmployees);
 
