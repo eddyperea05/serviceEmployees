@@ -2,25 +2,31 @@ import { pool } from "../db.js";
 
 export const getEmployees = async (req, res) => {
 
-    /*try {
-        const employees = await Employee.find();
-        res.json(employees);
+    try {
+        //throw new Error("DB Error")
+        const [rows] = await pool.query("Select * from employee");
+        res.json(rows)
     } catch (error) {
-        res.status(500).send(error.message);
-    }*/
+        return res.status(500).send(error.message);
+    }
 
-    const [rows] = await pool.query("Select * from employee");
-    res.json(rows)
+
+
 
 };
 
 export const getEmployeeId = async (req, res) => {
-    const [rows] = await pool.query("Select * from employee Where id = ?", [req.params.id])
-    if (rows.length <= 0) return res.status(404).json({
-        message: "Employee not found"
-    })
+    try {
+        const [rows] = await pool.query("Select * from employee Where id = ?", [req.params.id])
+        if (rows.length <= 0) return res.status(404).json({
+            message: "Employee not found"
+        })
 
-    return res.send(rows[0])
+        return res.send(rows[0])
+    } catch (error) {
+        return res.status(500).send(error.message);
+
+    }
 
 
 }
@@ -48,7 +54,7 @@ export const updateEmployees = async (req, res) => {
         message: "Employee not found"
     })
     const [result] = await pool.query("SELECT * FROM employee WHERE id = ? ", [id])
-   
+
     res.status(202).send(result)
 };
 
